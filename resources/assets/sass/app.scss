@@ -1,0 +1,68 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import "~font-awesome/scss/font-awesome.scss";
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  padding-top: 50px;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+.square{
+  min-height: 324px;
+  min-width: 50px;
+  border-style: solid ;
+}
+
+.square-color-pattern-R{
+  background-color: red;
+}
+
+.square-color-pattern-G{
+  background-color: green;
+}
+
+.square-color-pattern-B{
+  background-color: blue;
+}
+
+.m-top-20{
+  margin-top: 20px;
+}
+
+.m-left-3{
+  margin-left: 3%;
+}
+
+.m-left-7{
+  margin-left: 7%;
+}
+
+.f-size-31{
+  font-size: 23pt;
+}
+
+.f-size-200{
+  font-size: 200pt;
+}
+
+.check-success{
+  color: white;
+}
+
+.check-danger{
+  color: white;
+}

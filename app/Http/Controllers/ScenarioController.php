@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Scenario;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use stdClass;
 
 class ScenarioController extends Controller
@@ -233,15 +234,17 @@ class ScenarioController extends Controller
     public function checkScenario()
     {
         $scenario = Scenario::orderBy('created_at', 'DESC')->first();
-
-        if(($scenario->validation == NULL && $scenario->is_valid == null)
+		
+		if($scenario->status)
+			return 1;
+        elseif(($scenario->validation == NULL && $scenario->is_valid == null)
             || ($scenario->validation == "1,1,1,1" && $scenario->is_valid == 1))
             return 0;
         else
             return $scenario->validation;
     }
-
-    public function setScenarioStatus(Request $request)
+	
+	public function setScenarioStatus(Request $request)
     {
         $status = $request->input('status');
 
@@ -257,6 +260,18 @@ class ScenarioController extends Controller
 
         return response()->json(1) ;
     }
+	
+	public function updateScenario() {
+		$scenario = Scenario::orderBy('created_at', 'DESC')->first();
+		
+		if(($scenario->status) || !($scenario->is_valid))
+			return 0;
+		
+		$scenario->status = 1;
+		$scenario->save();
+		
+		return 1;
+	}
 
 
 }
